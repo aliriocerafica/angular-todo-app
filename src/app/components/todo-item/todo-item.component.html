@@ -1,0 +1,33 @@
+<mat-card class="mb-4 transition-all hover:shadow-md">
+  <div class="flex items-center p-4">
+    <mat-checkbox 
+      [checked]="todo.completed" 
+      (change)="onToggleComplete()" 
+      class="mr-4">
+    </mat-checkbox>
+    
+    <div class="flex-grow">
+      <p [ngClass]="{'line-through text-gray-500': todo.completed}">
+        {{ todo.title }}
+      </p>
+    </div>
+    
+    <div class="flex gap-2">
+      <button 
+        mat-icon-button 
+        color="primary" 
+        (click)="onEdit()" 
+        matTooltip="Edit Todo">
+        <mat-icon>edit</mat-icon>
+      </button>
+      
+      <button 
+        mat-icon-button 
+        color="warn" 
+        (click)="onDelete()" 
+        matTooltip="Delete Todo">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </div>
+</mat-card>

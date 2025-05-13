@@ -1,0 +1,10 @@
+/* Temporarily comment out Tailwind directives
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+*/
+
+/* Import Angular Material theme */
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+/* Add any other global styles after this line */

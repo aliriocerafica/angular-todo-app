@@ -1,0 +1,34 @@
+<div class="max-w-3xl mx-auto">
+  <h1 class="text-3xl font-bold text-center mb-8">My Todo List</h1>
+  
+  <!-- Todo Form -->
+  <app-todo-form 
+    [todo]="selectedTodo" 
+    (saveTodo)="onSaveTodo($event)" 
+    (cancelEdit)="onCancelEdit()">
+  </app-todo-form>
+  
+  <!-- Loading Spinner -->
+  <div *ngIf="isLoading" class="flex justify-center my-8">
+    <mat-spinner diameter="40"></mat-spinner>
+  </div>
+  
+  <!-- Empty State -->
+  <mat-card *ngIf="!isLoading && todos.length === 0" class="text-center p-8">
+    <mat-icon class="text-5xl text-gray-400 mx-auto mb-4">note_add</mat-icon>
+    <p class="text-gray-500 text-xl">No todos yet. Add one to get started!</p>
+  </mat-card>
+  
+  <!-- Todo List -->
+  <div *ngIf="!isLoading && todos.length > 0">
+    <h2 class="text-xl font-medium mb-4">Your Todos ({{ todos.length }})</h2>
+    
+    <app-todo-item 
+      *ngFor="let todo of todos" 
+      [todo]="todo" 
+      (edit)="onEditTodo($event)" 
+      (delete)="deleteTodo($event)" 
+      (toggleComplete)="onToggleComplete($event)">
+    </app-todo-item>
+  </div>
+</div>

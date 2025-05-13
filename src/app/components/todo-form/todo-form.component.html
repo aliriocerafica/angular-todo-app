@@ -1,0 +1,41 @@
+<mat-card class="mb-6">
+  <mat-card-header>
+    <mat-card-title>{{ todo ? 'Edit Todo' : 'Add New Todo' }}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="todoForm" (ngSubmit)="onSubmit()" class="mt-4">
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Todo Title</mat-label>
+        <input matInput formControlName="title" placeholder="Enter todo title">
+        <mat-error *ngIf="todoForm.get('title')?.hasError('required')">
+          Title is required
+        </mat-error>
+        <mat-error *ngIf="todoForm.get('title')?.hasError('minlength')">
+          Title must be at least 3 characters
+        </mat-error>
+      </mat-form-field>
+      
+      <div class="mt-2">
+        <mat-checkbox formControlName="completed">Mark as completed</mat-checkbox>
+      </div>
+      
+      <div class="flex justify-end mt-4 gap-2">
+        <button 
+          *ngIf="todo" 
+          mat-button 
+          type="button" 
+          color="warn" 
+          (click)="onCancel()">
+          Cancel
+        </button>
+        <button 
+          mat-raised-button 
+          type="submit" 
+          color="primary" 
+          [disabled]="todoForm.invalid">
+          {{ todo ? 'Update' : 'Add' }} Todo
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
